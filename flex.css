@@ -1,10 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
+    background: rgb(166, 168, 168);
     margin: 0;
 }
 
 .container {
-    width: 70%;
-    margin: 0 auto;
+    margin: auto;
+    width: 768px;
 }
 
 header {
@@ -52,32 +57,30 @@ h1 {
     margin: 0;
 }
 
-
 nav {
     margin: 0;
     width: 100%;
     height: 40px;
     background: black;
 }
-.header-nav{
+
+.header-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.container .header-nav .links{
+.container .header-nav .links {
     margin: 0;
     width: 70%;
     height: 40px;
-    color: white;
     display: flex;
-    
     list-style-type: none;
     justify-content: space-between;
     align-items: center;
 }
 
-.container .header-nav .links>a {
+.container .header-nav .links ul li {
     color: white;
 }
 
@@ -86,15 +89,14 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+    background: white;
 }
 
 aside {
     width: 30%;
-    
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: space-around;
     background: white;
 }
 
@@ -104,19 +106,26 @@ aside {
     height: auto;
 }
 
-.section2 .top-list  {
-    width:100%;
+.section2 .top-list {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     display: flex;
-  
 }
-h3{
+
+aside h3 {
+    color: black;
+}
+
+footer h3 {
+    display: flex;
+    flex: direction;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
-    
 }
-.top-list img{
+
+.top-list img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -124,9 +133,19 @@ h3{
     height: 25px;
     margin: 0 10px;
 }
- .top-list>li{
+
+.top-list>li {
+    width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.top-list>li:hover {
+    background: #eeeeee;
 }
 
 .section3 {
@@ -141,35 +160,72 @@ h3{
     border: 1px solid #999999;
 }
 
+@keyframes animacao {
+    0% {
+        background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+    }
+    50% {
+        background: linear-gradient(-45deg, #23a6d5, #23d5ab, #23d5ab);
+    }
+    100% {
+        background: linear-gradient(-45deg, #23d5ab, #23d5ab, #23a6ab);
+    }
+}
+
 .product {
     display: flex;
     flex-direction: column;
-    background:white;
     border: 1px solid #dddddd;
     border-radius: 5px;
-    
     margin: 10px auto;
     width: 110px;
     justify-content: flex-end;
     align-items: center;
-
+    background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+    animation-name: animacao;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
-h2{
+
+.product .btn {
+    padding: 0 10px;
+    display: block;
+    border-radius: 6px;
+    text-decoration: none;
+    color: black;
+    background: linear-gradient(-45deg, #23d5ab, #23a6d5);
+    transition-property: all;
+    transition-timing-function: linear;
+    transition-duration: 2s;
+    animation-name: animacao;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.product .btn :hover {
+    background-color: blue;
+}
+
+h2 {
     text-align: center;
 }
+
 .product .price-off {
     color: rgb(100, 96, 96);
     font-size: 15px;
     margin: 0;
 }
-.product .price-on{
+
+.product .price-on {
     font-size: 23px;
-    
     font-family: Arial, Helvetica, sans-serif;
     color: green;
     margin-top: 0;
     margin-bottom: 0;
 }
+
 .product .card-img {
     width: inherit;
     margin: 0 5px;
@@ -186,21 +242,22 @@ h2{
     justify-content: space-around;
 }
 
-.footer {
+h3 {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
     width: 100%;
     background: black;
     height: 250px;
-    
 }
 
 .container-footer {
-    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
-    
 }
 
 .container-footer ul {
@@ -210,18 +267,28 @@ h2{
     flex-direction: column;
     justify-content: space-between;
 }
-.container-footer ul>a{
+
+.container-footer ul li a {
     color: white;
 }
-.container-footer .top-list{
-    background:black;
+
+.container-footer .top-list {
+    /*background: black;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
+    color: white; 
+    transition: all ease 0.3s;
+    cursor: pointer;
 }
+.container-footer .top-list:hover{
+    background-color: rgb(105, 103, 103);
+}
+
 .container-footer>img {
     width: 10px;
     height: 10px;
     margin: 0 10px;
 }
+
+    
