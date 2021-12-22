@@ -1,0 +1,24 @@
+{
+  "name": "pokeloja",
+  "version": "1.0.0",
+  "description": "awari pokeloja",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sass --watch scss:css --style compressed",
+    "prod": "sass scss/commom/:css --style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WandersonAlmeida/pokeloja.git"
+  },
+  "author": "wanderson almeida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WandersonAlmeida/pokeloja/issues"
+  },
+  "homepage": "https://github.com/WandersonAlmeida/pokeloja#readme",
+  "dependencies": {
+    "sass": "^1.43.4"
+  }
+}
