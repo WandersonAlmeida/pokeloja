@@ -91,6 +91,10 @@ aside h3 {
     justify-content: flex-end;
     align-items: center;
     background: none;
+    a{
+        text-decoration: none;
+        color: black;
+    }
     /*background: linear-gradient(-45deg, #23a6d5, #23d5ab);
     animation-name: animacao;
     animation-duration: 12s;
@@ -116,6 +120,17 @@ aside h3 {
 }
 .paginas {
     margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    .pag{
+        margin: 0 100px;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        font-size: 16pt;
+        
+
+    }
    
     .btn-ant {
     
@@ -135,6 +150,7 @@ aside h3 {
 
 h2 {
     text-align: center;
+    text-transform: capitalize;
 }
 
 .product .price-off {

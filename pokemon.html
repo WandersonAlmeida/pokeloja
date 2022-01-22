@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Pokéloja</title>
-    <link rel="stylesheet" type="text/css" href="css/commom/index.css" />
-    <script src="js/carrinho.js"defer></script>
-    <script src="js/script.js"defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/carrinho.js" defer></script>
+    <script src="js/pokemon.js" defer></script>
+
+    <link rel="stylesheet" href="css/commom/pokemon.css" />
+    <title>pokemon</title>
 </head>
 
 <body>
-    
+
+    <div id ="fecharCar"></div>
     <header>
         <div class="container ">
             <div class="header-content">
@@ -22,14 +26,12 @@
                         </span></button>
                 </form>
                 <ul class="link">
-                
-                    <li><a id ="text" href="file:///Users/wanderson.almeida/projects/pokeloja/sobre.html">sobre</a> </li>
-                    
+                    <li><a href="file:///Users/wanderson.almeida/projects/pokeloja/sobre.html">sobre</a> </li>
                     <li><a href="file:///Users/wanderson.almeida/projects/pokeloja/contato.html">contato</a></li>
                     <li><a id="car" href="#"><img src="image/carrinho.png" alt="carrinho"></a></li>
-                   
-                    
-                    
+
+
+
                 </ul>
             </div>
 
@@ -47,37 +49,43 @@
                     <li><a href="#">blog</a></li>
                 </ul>
                 <ul class="logos">
-                    
-                    
+
+
                 </ul>
             </div>
         </div>
     </nav>
 
     <main class="container-content">
-        <div class="listaPokemon">
-            
+
         
-        </div>
+            <div class="pokemon">
+
+
+
+
+            </div>
+            
+
         <aside>
             <div class="section1"><img src="image/pokemongo.jpeg" alt="imagem do pokemon go" /></div>
             <div class="section2">
-    
+
                 <h3>top pokémons</h3>
-    
+
                 <ol class="top-list">
                     <li><img src="image/pikachu.png" alt="foto" />
                         <span>pikachu</span>
                     </li>
-    
+
                     <li><img src="image/squirtle.png" alt="foto"><span>squirtle</span></li>
-    
+
                     <li> <img src="image/entei.png" alt="foto"><span>golde</span></li>
-    
+
                 </ol>
             </div>
-    
-    
+
+
             <div class="section3">
                 <form action="#">
                     <P>Receba nossas novidades</P>
@@ -91,20 +99,10 @@
 
 
 
-        <div class="paginas">
 
-
-            <button class="btn-ant">voltar </button>
-            <div class="pag"></div>
-            <button class="btn-prox">proximo</button>
-    
-
-        </div>
-     
-        
     </main>
 
- 
+
 
     <footer>
         <div class="container">
@@ -132,11 +130,11 @@
         </div>
         </div>
     </footer>
-    <div id ="fecharCar"></div>
-    <section class= "carrinho">
-        <button id ="fecharCarrinho">x</button>
+    <section class="carrinho">
+        <button id="fecharCarrinho">x</button>
         <h4>carrinho</h4>
     </section>
+
 </body>
 
 </html>

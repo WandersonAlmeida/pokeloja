@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"config.css"}
+{"version":3,"sourceRoot":"","sources":["../../scss/commom/config.scss"],"names":[],"mappings":"AAAA,MACI,aACA,qBACA,eACA,mBACA,gBACA,WAEJ,YACI,mBACA,eACA,WACA,oBACA","file":"config.css"}
