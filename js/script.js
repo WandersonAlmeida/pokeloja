@@ -12,11 +12,11 @@ class Pokemon {
         //
         pokediv.innerHTML = `  
             <img class="card-img" src="${this.imagem}" alt='${this.nome}'/>
-            <h2>${this.nome}</h2>
+            <h2 class="nome">${this.nome}</h2>
             <p class="price-off"><s>R$ ${this.preço}</s></p>
             <p class="price-on">R$ ${(this.preço * 0.8).toFixed(2)}</p>
-            <button class="btn" onclick="addPokemon(${this})" >
-                <img src="image/pokebola.png" alt='pokebola'/> comprar
+            <button class="btn" onclick="addPokemon()" >
+                <img  src="image/pokebola.png" alt='pokebola'/> comprar
             </button>`;
 
            
@@ -24,16 +24,19 @@ class Pokemon {
         return pokediv;
     }
 
+}
+function addPokemon(){
 
-
+    let name =document.querySelector(".nome").value;
+    localStorage.nome =name;
+    
+    
+    //let a = localStorage.setItem(imagem=`${this.imagen}`,nome=`${this.nome}`)
 
 }
-function setPokediv(){
+ //localStorage.setItem();
+ //localStorage.removeItem("p")
 
-
-}
-
-//const meuStorage = localStorage.setItem('pokediv')
 
 /*async function getPokemons() {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon');
@@ -66,28 +69,14 @@ const fakePromise = ()=>new Promise((resolve)=>setTimeout(resolve,3000));
 
 
 function temAnterior(page) {
-  
-    const response= document.querySelector('.btn-ant');
-    const btnAnt = response
-    if (page === 0) {
-        btnAnt.style.visibility = 'hidden';
-    }else{
-         btnAnt.style.visibility = 'visible';
-     }
-     return btnAnt;
-    
+    const btnAnt= document.querySelector('.btn-ant');
+    btnAnt.style.visibility = page === 0 ? 'hidden': 'visible';
 }
 //function para verificar se tem pag e fazer sumir o botao
-function temProxima(page) {
- 
-    const response= document.querySelector('.btn-prox');
-    const btnProx = response
-    if (page === 55) btnProx.style.visibility = 'hidden';
-     else{
-         btnProx.style.visibility = 'visible';
-     }
-     return btnProx;
-    
+function temProxima(page) { 
+    const btnProx = document.querySelector('.btn-prox');
+    btnProx.style.visibility = page === 55 ? 'hidden' :"visible ";
+
 }
 
 //function para voltar a pag
@@ -161,7 +150,6 @@ window.onload = async () => {
 
     CarregarCarrinho();
 
-    //localStorage.cardCar = "listaPokemons(response.results);"
     
     
    
