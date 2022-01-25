@@ -1,27 +1,16 @@
-function CarregarCarrinho() {
-    abrirCarrinho();
-    fecharCarrinho();
-}
 
-
-
-function abrirCarrinho() {
+function openCart() {
     const btncar = document.querySelector('#car');
     btncar.addEventListener('click', function (event) {
-        console.log(btncar)
         event.preventDefault();
-        if (document.body.className === '') {
-            document.body.className = "carrinho-aberto"
-        } else{
-            document.body.className = '';
-        }
-        
+        document.body.className = document.body.className === ''? "carrinho-aberto" : "";
+        renderCart();
     });
 }
 
 
 
-function fecharCarrinho() {
+function closeCart() {
     const fecharCar = document.querySelector('#fecharCar')
     const btnfecharCarrinho = document.querySelector('#fecharCarrinho');
 
@@ -35,7 +24,7 @@ function fecharCarrinho() {
         if (keyName === 'Escape') {
             document.body.className = "";
         }
-    }, false);
+    });
 
     btnfecharCarrinho.addEventListener('click', function (event) {
         event.preventDefault();
@@ -43,20 +32,28 @@ function fecharCarrinho() {
             document.body.className = "";
         }
         
-    })
+    });
 }
 
-/*function addPokemon(pokemon) {
-    console.log({ pokemon })
-}*/
+function renderCart(){
+    const pokemonCartList = getLocalStorage();
+    let html ="<ul>"; 
+    pokemonAdded.forEach((pokemon)=>{
+        html+=`<li>${pokemon.id}- ${pokemon.name}- ${pokemon.price}</li>`;
+    });
 
-
-
-
-/*function abrir(bb){
-    const btncar = document.querySelector('#car');
-const aberto = document.body.className === "carrinho-aberto"
-const fechado = document.body.className = "";
-const abrir = bb = fechado?aberto:fechado
-
-}*/
+    html+="</ul>";
+    pokemonCartList.innerHTML = html; 
+}
+function getLocalStorage(){
+    return JSON.parse(localStorage.getItem("pokemonscart")) || [];
+}
+function addPokemon(pokemon){
+    const pokemonAdded = getLocalStorage();
+    pokemonAdded.push(pokemon);
+    localStorage.setItem("pokemonCart",JSON.stringify(pokemonAdded));
+}
+window.addEventListener("load",async()=>{
+    openCart();
+    closeCart();
+});
