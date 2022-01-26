@@ -36,24 +36,27 @@ function closeCart() {
 }
 
 function renderCart(){
-    const pokemonCartList = getLocalStorage();
+
+    const pokemonCartList = document.querySelector("#pokemonsAdded");
     let html ="<ul>"; 
-    pokemonAdded.forEach((pokemon)=>{
+    const pokemonsAdded = getLocalStorage()
+    pokemonsAdded.forEach((pokemon)=>{
         html+=`<li>${pokemon.id}- ${pokemon.name}- ${pokemon.price}</li>`;
     });
 
-    html+="</ul>";
+    html+=`</ul>`;
     pokemonCartList.innerHTML = html; 
 }
 function getLocalStorage(){
     return JSON.parse(localStorage.getItem("pokemonscart")) || [];
 }
 function addPokemon(pokemon){
-    const pokemonAdded = getLocalStorage();
-    pokemonAdded.push(pokemon);
-    localStorage.setItem("pokemonCart",JSON.stringify(pokemonAdded));
+    const pokemonsAdded = getLocalStorage();
+    pokemonsAdded.push(pokemon);
+    localStorage.setItem("pokemonCart",JSON.stringify(pokemonsAdded));
 }
 window.addEventListener("load",async()=>{
+    console.log("load carrinho.js");  
     openCart();
     closeCart();
 });

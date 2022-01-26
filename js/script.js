@@ -15,142 +15,108 @@ class Pokemon {
             <h2 class="nome">${this.nome}</h2>
             <p class="price-off"><s>R$ ${this.preço}</s></p>
             <p class="price-on">R$ ${(this.preço * 0.8).toFixed(2)}</p>
-            <button class="btn" onclick="addPokemon()" >
+            <button class="btn btn-add-pokemon " data-id="${this.id}" >
                 <img  src="image/pokebola.png" alt='pokebola'/> comprar
             </button>`;
-
-           
-        
         return pokediv;
     }
-
 }
-function addPokemon(){
 
-    let name =document.querySelector(".nome").value;
-    localStorage.nome =name;
-    
-    
-    //let a = localStorage.setItem(imagem=`${this.imagen}`,nome=`${this.nome}`)
+function render (pokemonsList){
+    const listaPokemon = document.querySelector(".listaPokemon");
+    listaPokemon.innerHTML = "";
+    const pokemonsObjectList = pokemonsList.map((pokemon) => new Pokemon(pokemon.name,pokemon.url));
 
-}
- //localStorage.setItem();
- //localStorage.removeItem("p")
-
-
-/*async function getPokemons() {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon');
-
-    const json = await response.json();
-
-    return json;
-}*/
-
-
-let page = 0
-const pag = document.querySelector('.pag');
-paginas = page +1;
-pag.innerHTML = `${paginas}`
+    pokemonsObjectList.forEach((pokemon)=>{
+        const html = pokemon.html();
+        listaPokemon.appendChild(html);
+    });
+    const btnAddPokemon = document.querySelectorAll(".btn-add-pokemon");
+    btnAddPokemon.forEach((btn)=>{
+        btn.addEventListener("click",(event)=>{
+            const id = event.target.getAttribute("data-id");
+            const pokemon = pokemonsObjectList.find((pokemonObject)=>pokemonObject.id == id);
+            addPokemon(pokemon);
+        });
+    });
+};
 
 async function getPokemons(page = 0) {
     const listaPokemon = document.querySelector('.listaPokemon');
-    listaPokemon.innerHTML ='<div class = "carregando">carregando pokemons...</dic>'
+    listaPokemon.innerHTML ='<div class = "carregando">Carregando pokemons...</dic>';
+    await fakePromise();
     const limit = 20;
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset= ${limit * page}`);
     const json = await response.json();
     const pages = Math.ceil(json.count / limit);
-    
-  
-    return json;
+    return {result: json.results,totalPage:pages};
 }
-const fakePromise = ()=>new Promise((resolve)=>setTimeout(resolve,3000));
 
+const fakePromise = ()=>new Promise((resolve)=>setTimeout(resolve,2000));
 
-
-
-function temAnterior(page) {
+function hiddenPrevious(page) {
     const btnAnt= document.querySelector('.btn-ant');
     btnAnt.style.visibility = page === 0 ? 'hidden': 'visible';
+    return btnAnt;
 }
 //function para verificar se tem pag e fazer sumir o botao
-function temProxima(page) { 
+function hiddenNext(page,totalPage) { 
     const btnProx = document.querySelector('.btn-prox');
-    btnProx.style.visibility = page === 55 ? 'hidden' :"visible ";
-
+    btnProx.style.visibility = page == totalPage ? 'hidden' :"visible ";
+    return btnProx;
 }
+
 
 //function para voltar a pag
-function btnAnt() {
+function previousPage(page) {
     const btnAnt = document.querySelector('.btn-ant');
-    const pag = document.querySelector('.pag')
-   
     btnAnt.onclick = async () => {
-        const response = await getPokemons(page -= 1);
-        const listaPokemon = document.querySelector('.listaPokemon');
-        pag.innerHTML = `${paginas-=1}`
-        listaPokemons(response.results);
-    }
-}
+        updateQueryParametes(page-1);
+    };
+};
 //function para passar para a proxima pag
-function btnProx() {
+function nextPage(page) {
     const btnProx = document.querySelector('.btn-prox');
-    const pag = document.querySelector('.pag')
-    btnProx.onclick = async () => {
-        const response = await getPokemons(page += 1);
-        const listaPokemon = document.querySelector('.listaPokemon');
-        pag.innerHTML = `${paginas+=1}`
-       
-        
-        listaPokemons(response.results);
-    }
+        btnProx.onclick = async () => {
+            updateQueryParametes(page+1);
+        };
 }
 
-
-
-function listaPokemons(pokemonsApi) {
-    const listaPokemon = document.querySelector('.listaPokemon');
-    listaPokemon.innerHTML = ''
-    const pokemons = pokemonsApi.map((pokemon) => new Pokemon(pokemon.name, pokemon.url));
-
-    pokemons.forEach((pokemon) => {
-        const html = pokemon.html();
-        listaPokemon.appendChild(html)
-    });
-    console.log()
-    temAnterior(page);
-    temProxima(page);
+function updatePageNumber(page){
+    const pag = document.querySelector(".pag")
+    pag.innerHTML = page != 0 ?`${page}`:"";
+}
+function getPageNumber(){
+    const params = getQueryParamates();
+    return parseInt(params.page || 0);
+}
+function getQueryParamates(page){
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    return params;
+}
+function updateQueryParametes(page){
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    urlSearchParams.set("page",page);
+    window.location.search = urlSearchParams.toString();
 }
 
-   
 
 //executa com a pag termina de carregar
 window.onload = async () => {
-    const listaPokemon = document.querySelector('.listaPokemon');
+    const page = getPageNumber();
 
-    const response = await getPokemons();
+    updatePageNumber(page);
 
-    const pokemons = response.results.map((pokemon) => new Pokemon(pokemon.name, pokemon.url));
-
-    pokemons.forEach((pokemon) => {
-        const html = pokemon.html();
-        listaPokemon.appendChild(html);
-    });
-    const resposta = await getPokemons(page);
-    await fakePromise();
-
-    listaPokemons(response.results);
-     
-    btnAnt();
-
-    btnProx();
-
-    temAnterior(page);
-
-    temProxima(page);
-
-    CarregarCarrinho();
-
+    const response = await getPokemons(page);
+    render(response.result);
     
-    
-   
+    hiddenPrevious(page);
+
+    hiddenNext(page,response.totalPage);
+
+    previousPage(page);
+
+    nextPage(page);
+
 }
