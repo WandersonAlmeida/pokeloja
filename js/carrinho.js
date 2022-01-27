@@ -41,22 +41,38 @@ function renderCart(){
     let html ="<ul>"; 
     const pokemonsAdded = getLocalStorage()
     pokemonsAdded.forEach((pokemon)=>{
-        html+=`<li>${pokemon.id}- ${pokemon.name}- ${pokemon.price}</li>`;
+        html+=`<li><img class = "imageCar" src= "${pokemon.image}"alt= "${pokemon.name}"/></li>
+        <li class = "nameCar"> ${pokemon.name}</li>
+        <li class = "priceCar">R$ ${(pokemon.price * 0.8).toFixed(2)}</li>
+        <button class="removeItem" onclick="remove(${this.id})" >
+            Excluir
+        </button>
+        
+        `;
+        
     });
 
     html+=`</ul>`;
     pokemonCartList.innerHTML = html; 
 }
+function remove(pokemon){
+    const removeItem = document.querySelector(".removeItem");
+    const pokemonsAdded = getLocalStorage();
+    pokemonsAdded.pop(pokemon);
+    localStorage.removeItem("pokemonsCart");
+} 
+    
 function getLocalStorage(){
-    return JSON.parse(localStorage.getItem("pokemonscart")) || [];
+    return JSON.parse(localStorage.getItem("pokemonsCart")) || [];
 }
 function addPokemon(pokemon){
     const pokemonsAdded = getLocalStorage();
     pokemonsAdded.push(pokemon);
-    localStorage.setItem("pokemonCart",JSON.stringify(pokemonsAdded));
+    localStorage.setItem("pokemonsCart",JSON.stringify(pokemonsAdded));
 }
 window.addEventListener("load",async()=>{
     console.log("load carrinho.js");  
     openCart();
     closeCart();
 });
+//

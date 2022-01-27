@@ -1,20 +1,19 @@
 class Pokemon {
-    constructor(nome, url,) {
-        this.nome = nome;
+    constructor(name, url,) {
+        this.name = name;
         this.url = url;          //https://pokeapi.co/api/v2/pokemon/1/
         this.id = this.url.replace('https://pokeapi.co/api/v2/pokemon/', '').replace('/', '');
-        this.imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${this.id}.png`;
-        this.preço = Math.floor(Math.random() * 200);
+        this.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${this.id}.png`;
+        this.price = Math.floor(Math.random() * 200);
     }
     html() {
         const pokediv = document.createElement('div');
         pokediv.className = 'product';
-        //
         pokediv.innerHTML = `  
-            <img class="card-img" src="${this.imagem}" alt='${this.nome}'/>
-            <h2 class="nome">${this.nome}</h2>
-            <p class="price-off"><s>R$ ${this.preço}</s></p>
-            <p class="price-on">R$ ${(this.preço * 0.8).toFixed(2)}</p>
+            <img class="card-img" src="${this.image}" alt='${this.name}'/>
+            <h2 class="nome">${this.name}</h2>
+            <p class="price-off"><s>R$ ${this.price}</s></p>
+            <p class="price-on">R$ ${(this.price * 0.8).toFixed(2)}</p>
             <button class="btn btn-add-pokemon " data-id="${this.id}" >
                 <img  src="image/pokebola.png" alt='pokebola'/> comprar
             </button>`;

@@ -1,7 +1,9 @@
 body.carrinho-aberto{
+
     .carrinho{
         box-shadow: -4px 5px 12px 2px rgba(0,0,0,0.62);
         right: 0;
+        
     }
 
     #fecharCar{
@@ -21,6 +23,8 @@ body.carrinho-aberto{
 }
 
 .carrinho{
+    
+
     padding: 15px;
     width: 450px;
     height: 100vh;
@@ -32,28 +36,53 @@ body.carrinho-aberto{
     border-left: solid 1px #ccc;
     transition: all ease-in 0.3s;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    display: block;
+   
+
 
     button{
-        background: transparent;
-        border: 0;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
+            background-color: rgb(236, 70, 70);
+           // background: transparent;
+            border: 0;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
     }
-
-    h4{
-        font-size: 20px;
+    
+    .carHeader h5{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
         margin: 0;
     }
 
-    #pokemonsAdded{
-        width: 100px;
-        height: 100px;
+    
+    
+    #pokemonsAdded {
+        
+        ul {
+            
+            list-style: none;
+            font-size: 27px;
+        
+            li {
+                .imageCar{
+                    width: 100px;
+                    height: 100px;
+               }
+                
+            }
+        }
     }
+    
 
+  
+
+    
 }   
-
-
 
