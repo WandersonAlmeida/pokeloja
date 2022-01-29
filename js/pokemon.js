@@ -89,7 +89,7 @@ window.onload = async function () {
 
     pokemon.innerHTML =`<div class = "erro"> Pokemon não encontrado</div> `
     }
-    CarregarCarrinho();
+    
 }
 
 

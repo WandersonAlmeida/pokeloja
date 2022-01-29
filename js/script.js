@@ -10,7 +10,8 @@ class Pokemon {
         const pokediv = document.createElement('div');
         pokediv.className = 'product';
         pokediv.innerHTML = `  
-            <img class="card-img" src="${this.image}" alt='${this.name}'/>
+            <a href="pokemon.html?id=${this.id}">
+            <img class="card-img" src="${this.image}" alt='${this.name}'/></a>
             <h2 class="nome">${this.name}</h2>
             <p class="price-off"><s>R$ ${this.price}</s></p>
             <p class="price-on">R$ ${(this.price * 0.8).toFixed(2)}</p>

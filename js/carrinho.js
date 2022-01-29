@@ -41,13 +41,13 @@ function renderCart(){
     let html ="<ul>"; 
     const pokemonsAdded = getLocalStorage()
     pokemonsAdded.forEach((pokemon)=>{
-        html+=`<li><img class = "imageCar" src= "${pokemon.image}"alt= "${pokemon.name}"/></li>
-        <li class = "nameCar"> ${pokemon.name}</li>
-        <li class = "priceCar">R$ ${(pokemon.price * 0.8).toFixed(2)}</li>
-        <button class="removeItem" onclick="remove(${this.id})" >
+        html+=`<li><img class = "imageCar" src= "${pokemon?.image}"alt= "${pokemon?.name}"/></li>
+        <li class = "nameCar"> ${pokemon?.name}</li>
+        <li class = "priceCar">R$ ${(pokemon?.price * 0.8).toFixed(2)}</li>
+        <div class ="quantidade"> <button class="removeItem" onclick="remove('${pokemon.id}')" >
             Excluir
         </button>
-        
+        </div>
         `;
         
     });
@@ -55,11 +55,14 @@ function renderCart(){
     html+=`</ul>`;
     pokemonCartList.innerHTML = html; 
 }
-function remove(pokemon){
+function remove(pokemonid){
     const removeItem = document.querySelector(".removeItem");
     const pokemonsAdded = getLocalStorage();
-    pokemonsAdded.pop(pokemon);
-    localStorage.removeItem("pokemonsCart");
+    const local = pokemonsAdded.filter(pokemon=>pokemon.id!== pokemonid)
+        
+      
+    
+    localStorage.setItem("pokemonsCart",JSON.stringify(local));
 } 
     
 function getLocalStorage(){
@@ -67,12 +70,18 @@ function getLocalStorage(){
 }
 function addPokemon(pokemon){
     const pokemonsAdded = getLocalStorage();
-    pokemonsAdded.push(pokemon);
+    pokemonsAdded.push(pokemon)
+    
+    
+
+    
     localStorage.setItem("pokemonsCart",JSON.stringify(pokemonsAdded));
 }
+
+
 window.addEventListener("load",async()=>{
     console.log("load carrinho.js");  
     openCart();
     closeCart();
 });
-//
+//const local = pokemonsAdded.filter(pokemon=>pokemon.id!== pokemonid)
